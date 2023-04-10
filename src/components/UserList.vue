@@ -28,13 +28,13 @@
 <script lang="ts">
   import { User } from "@/models/User";
   import { useRepo } from "pinia-orm";
-  import { ref, computed, reactive } from "vue";
-  import data from "@/data";
+  import { computed } from "vue";
+  // import data from "@/data";
 
   export default {
     setup() {
       const userRepo = useRepo(User);
-      userRepo.save(data.users);
+      // userRepo.save(data.users);
 
       // computed users
       const users = computed(() => userRepo.with("todos").get());

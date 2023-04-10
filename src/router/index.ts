@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { useUserStore } from "@/store/modules/user";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "App",
+    name: "Home",
+    component: () => import("@/views/Home.vue"),
   },
   {
     path: "/about",
@@ -15,6 +17,13 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach(() => {
+  const store = useUserStore();
+  if (!store.users.length) {
+    store.initilizeUsers();
+  }
 });
 
 export default router;
