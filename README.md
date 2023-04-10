@@ -1,10 +1,11 @@
-# Boilterplate Vue 3 + Typescript + Vite + Pinia
+# TODO Example use Vue 3 + Vuetify + Typescript + Vite + Pinia + ORM
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This example should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
 ## :hammer: Configured development tools:
 
 - [Vue 3](https://v3.vuejs.org/)
+- [Vuetify 3](https://vuetifyjs.com/)
 - [Vite](https://vitejs.dev/)
 - [Typescript](https://www.typescriptlang.org/)
 - [Vue Router](https://router.vuejs.org/)
@@ -29,11 +30,13 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 ### :one: Clone the repository
 
 **HTTPS**
+
 ```
 git clone https://github.com/Lucas98Fernando/vue3-vite-ts-pinia-boilerplate.git
 ```
 
 **SSH**
+
 ```
 git clone git@github.com:Lucas98Fernando/vue3-vite-ts-pinia-boilerplate.git
 ```
@@ -41,19 +44,25 @@ git clone git@github.com:Lucas98Fernando/vue3-vite-ts-pinia-boilerplate.git
 ### :two: Install dependencies
 
 **NPM**
+
 ```
 npm install
 ```
+
 or only:
+
 ```
 npm i
 ```
 
 **YARN**
+
 ```
 yarn install
 ```
+
 or only:
+
 ```
 yarn
 ```
@@ -61,11 +70,13 @@ yarn
 ### :three: Compilation and HMR for development with Vite
 
 **NPM**
+
 ```
 npm run dev
 ```
 
 **YARN**
+
 ```
 yarn dev
 ```
@@ -75,11 +86,13 @@ yarn dev
 ### :four: Compile and minify for production
 
 **NPM**
+
 ```
 npm run build
 ```
 
 **YARN**
+
 ```
 yarn build
 ```
@@ -87,11 +100,13 @@ yarn build
 ### :five: Lints and fix files
 
 **NPM**
+
 ```
 npm run lint
 ```
 
 **YARN**
+
 ```
 yarn lint
 ```

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header">
         <h2 class="title">TODOS</h2>
-        <button class="button" @click="add">ADD TODO</button>
+        <v-btn variant="outlined" @click="add">ADD TODO</v-btn>
       </div>
 
       <TodoList />
@@ -14,6 +14,7 @@
 <script>
   import Todo from "@/models/Todo";
   import TodoList from "./TodoList.vue";
+  import { useRepo } from "pinia-orm";
 
   export default {
     components: {
@@ -22,7 +23,7 @@
 
     methods: {
       add() {
-        Todo.insert({
+        useRepo(Todo).insert({
           data: { title: "" },
         });
       },
