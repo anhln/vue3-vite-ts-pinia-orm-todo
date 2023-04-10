@@ -1,5 +1,5 @@
 <template>
-  <div class="TodosList">
+  <div class="todo-list">
     <div
       v-for="todo in todos"
       :key="todo.id"
@@ -7,8 +7,6 @@
       :class="{ done: todo.done }"
     >
       <v-btn icon flat @click="toggle(todo)">
-        <!-- <IconCheckCircle class="svg check" />
-         -->
         <v-icon>mdi-check</v-icon>
       </v-btn>
 
@@ -23,7 +21,7 @@
         "
       />
 
-      <!-- <TodoListAssignee :todoId="todo.id" /> -->
+      <TodoListAssignee :todo-id="todo.id" />
 
       <v-btn icon flat @click="destroy(todo)">
         <v-icon>mdi-delete-outline</v-icon>
@@ -35,39 +33,43 @@
 <script lang="ts">
   import Todo from "@/models/Todo";
   import { useRepo } from "pinia-orm";
-  // import TodoListAssignee from "./TodoListAssignee.vue";
+  import TodoListAssignee from "./TodoListAssignee.vue";
   import { computed } from "vue";
 
   export default {
     components: {
-      // TodoListAssignee,
+      TodoListAssignee,
     },
 
     setup() {
       const todoRepo = useRepo(Todo);
-      const todos = computed(() => todoRepo.query().get());
+      const todos = computed(() => todoRepo.all());
+
+      const toggle = (todo) => {
+        todoRepo.save({ done: !todo.done });
+      };
+
+      const update = (todo, title) => {
+        todoRepo.save({ id: todo.id, title: title });
+      };
+
+      const destroy = (todo) => {
+        todoRepo.destroy(todo.id);
+      };
       return {
         todos,
+        toggle,
+        update,
+        destroy,
       };
     },
-
-    // methods: {
-    //   toggle(todo) {
-    //     todo.$update({ done: !todo.done });
-    //   },
-
-    //   update(todo, title) {
-    //     todo.$update({ title });
-    //   },
-
-    //   destroy(todo) {
-    //     todo.$delete();
-    //   },
-    // },
   };
 </script>
 
 <style scoped>
+  .todo-list {
+    padding-bottom: 24px;
+  }
   .todo {
     display: flex;
     align-items: center;

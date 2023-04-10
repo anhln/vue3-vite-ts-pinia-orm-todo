@@ -1,58 +1,59 @@
 <template>
   <div class="TodosAssignee">
-    <IconUser class="user" />
+    <v-icon>mdi-account</v-icon>
 
     <select
-      class="select"
       :class="{ selected: !!todo.assignee }"
+      class="select"
       @change="update"
     >
       <option class="option" value="">Choose assignee</option>
       <option
         class="option"
         :value="user.id"
-        :selected="todo.user_id == user.id"
         :key="user.id"
         v-for="user in users"
+        :selected="todo.user_id == user.id"
       >
         {{ user.name }}
       </option>
     </select>
 
-    <IconChevronDown class="down" />
+    <v-icon>mdi-down</v-icon>
   </div>
 </template>
 
 <script lang="ts">
+  import { computed, defineComponent } from "vue";
   import { User } from "@/models/User";
   import Todo from "@/models/Todo";
+  import { useRepo } from "pinia-orm";
 
-  export default {
-    components: {},
-
+  export default defineComponent({
     props: {
       todoId: { type: String, required: true },
     },
+    setup(props) {
+      const users = computed(() => useRepo(User).orderBy("name").get());
 
-    computed: {
-      users() {
-        return User.query().orderBy("name").get();
-      },
+      const todo = computed(() =>
+        useRepo(Todo).with("assignee").find(props.todoId)
+      );
 
-      todo() {
-        return Todo.query().with("assignee").find(this.todoId);
+      return {
+        users,
+        todo,
+      };
+    },
+    methods: {
+      update(e) {
+        useRepo(Todo).save({
+          id: this.todoId,
+          user_id: e.target.value,
+        });
       },
     },
-
-    // methods: {
-    //   update(e) {
-    //     Todo.update({
-    //       id: this.todoId,
-    //       user_id: e.target.value,
-    //     });
-    //   },
-    // },
-  };
+  });
 </script>
 
 <style scoped>

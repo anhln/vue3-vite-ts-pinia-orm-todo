@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header">
         <h2 class="title">USERS</h2>
-        <button class="button" @click="add">ADD USER</button>
+        <v-btn variant="outlined" @click="add">ADD USER</v-btn>
       </div>
 
       <UserList />
