@@ -10,12 +10,7 @@ This example should help get you started developing with Vue 3, Vuetify 3, Pinia
 - [Typescript](https://www.typescriptlang.org/)
 - [Vue Router](https://router.vuejs.org/)
 - [Pinia](https://pinia.vuejs.org/)
-- [Axios](https://axios-http.com/)
 - [ESLint](https://eslint.org/) - [Prettier](https://prettier.io/)
-
-## Unit tests tools
-
-- [Jest](https://jestjs.io/)
 
 ## Recommended IDE Setup
 
