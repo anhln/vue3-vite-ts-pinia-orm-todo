@@ -5,38 +5,33 @@
         <h2 class="title">USERS</h2>
         <v-btn variant="outlined" @click="add">ADD USER</v-btn>
       </div>
-
       <UserList />
     </div>
   </section>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from "vue";
   import { User } from "@/models/User";
   import UserList from "./UserList.vue";
   import { useRepo } from "pinia-orm";
 
-  export default {
+  export default defineComponent({
     components: {
       UserList,
     },
 
     methods: {
       add() {
-        // User.insert({
-        //   data: { name: "" },
-        // });
         useRepo(User).insert({
           data: { name: "" },
         });
       },
     },
-  };
+  });
 </script>
 
 <style scoped>
-  @import "@/assets/styles/variables";
-
   .container {
     border-radius: 4px;
     background-color: #fff;

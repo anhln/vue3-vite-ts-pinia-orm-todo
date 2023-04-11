@@ -6,13 +6,13 @@ import { RouterView } from 'vue-router';
 
 <!-- <script lang="ts">
   import { defineComponent, onMounted, ref } from "vue";
-  import { generateFakeData, Item } from "@/models/item";
   import { useMainStore } from "./store/index";
 
   import AppHeader from "./components/AppHeader.vue";
   import AppDescription from "./components/AppDescription.vue";
   import UsersSectionVue from "./components/UsersSection.vue";
   import TodosSection from "./components/TodosSection.vue";
+  import AppFooter from "./components/AppFooter.vue";
 
   export default defineComponent({
     name: "App",
@@ -21,30 +21,26 @@ import { RouterView } from 'vue-router';
       AppDescription,
       UsersSectionVue,
       TodosSection,
+      AppFooter,
     },
     setup() {
-      const items = ref<Item[]>([]);
-
       const mainStore = useMainStore();
 
-      onMounted(() => {
-        items.value = mainStore.items;
-      });
+      onMounted(() => {});
 
       function createItem() {
-        mainStore.createNewItem(generateFakeData());
+        // mainStore.createNewItem(generateFakeData());
       }
 
       function deleteItem(id: string) {
-        mainStore.deleteItem(id);
+        // mainStore.deleteItem(id);
       }
 
       function updateItem(id: string) {
-        mainStore.updateItem(id, generateFakeData());
+        // mainStore.updateItem(id, generateFakeData());
       }
 
       return {
-        items,
         createItem,
         deleteItem,
         updateItem,

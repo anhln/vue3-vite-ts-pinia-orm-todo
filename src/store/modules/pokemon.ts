@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { api } from "@/http/api";
+// import { api } from "@/http/api";
 
 export const usePokemonStore = defineStore("pokemon", {
   state: () => ({
@@ -11,9 +11,8 @@ export const usePokemonStore = defineStore("pokemon", {
   },
   actions: {
     async getPokemons() {
-      return await api
-        .get("/pokemon?limit=20")
-        .then((pokemons) => (this.pokemons = pokemons.data.results));
+      // return await api.get("/pokemon?limit=20");
+      // .then((pokemons) => (this.pokemons = pokemons.data.results));
     },
   },
 });
