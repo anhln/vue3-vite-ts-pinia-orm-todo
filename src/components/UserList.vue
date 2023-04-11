@@ -29,27 +29,22 @@
   import { User } from "@/models/User";
   import { useRepo } from "pinia-orm";
   import { computed } from "vue";
-  // import data from "@/data";
 
   export default {
     setup() {
       const userRepo = useRepo(User);
-      // userRepo.save(data.users);
-
-      // computed users
+      
       const users = computed(() => userRepo.with("todos").get());
+      
       const destroy = (user) => {
         useRepo(User).destroy(user.id);
       };
+      
       const update = (user, title) => {
         useRepo(User).save({ id: user.id, name: title });
       };
-      const toggle = (user) => {
-        useRepo(User).save({ id: user.id, done: !user.done });
-      };
       return {
         users,
-        toggle,
         update,
         destroy,
       };

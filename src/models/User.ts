@@ -11,7 +11,4 @@ export class User extends Model {
       todos: this.hasMany(Todo, "user_id"),
     };
   }
-  // id!: number;
-  // name!: string;
-  // todos!: Array<Todo>;
 }

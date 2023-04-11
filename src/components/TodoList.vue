@@ -1,7 +1,7 @@
 <template>
   <div class="todo-list">
     <div
-      v-for="todo in todos"
+      v-for="todo in todoStore.todos"
       :key="todo.id"
       class="todo"
       :class="{ done: todo.done }"
@@ -31,10 +31,8 @@
 </template>
 
 <script lang="ts">
-  import Todo from "@/models/Todo";
-  import { useRepo } from "pinia-orm";
   import TodoListAssignee from "./TodoListAssignee.vue";
-  import { computed } from "vue";
+  import { useTodoStore } from "@/store/modules/todo";
 
   export default {
     components: {
@@ -42,22 +40,24 @@
     },
 
     setup() {
-      const todoRepo = useRepo(Todo);
-      const todos = computed(() => todoRepo.all());
+      const todoStore = useTodoStore();
 
       const toggle = (todo) => {
-        todoRepo.save({ done: !todo.done });
+        todoStore.save({
+          id: todo.id,
+          done: !todo.done,
+        });
       };
 
       const update = (todo, title) => {
-        todoRepo.save({ id: todo.id, title: title });
+        todoStore.update(todo, title);
       };
 
       const destroy = (todo) => {
-        todoRepo.destroy(todo.id);
+        todoStore.destroy(todo.id);
       };
       return {
-        todos,
+        todoStore,
         toggle,
         update,
         destroy,

@@ -9,17 +9,17 @@
     >
       <option class="option" value="">Choose assignee</option>
       <option
-        class="option"
-        :value="user.id"
-        :key="user.id"
         v-for="user in users"
+        :key="user.id"
+        :value="user.id"
         :selected="todo.user_id == user.id"
+        class="option"
       >
         {{ user.name }}
       </option>
     </select>
 
-    <v-icon>mdi-down</v-icon>
+    <v-icon>mdi-chevron-down</v-icon>
   </div>
 </template>
 
@@ -39,19 +39,18 @@
       const todo = computed(() =>
         useRepo(Todo).with("assignee").find(props.todoId)
       );
+      const update = (e) => {
+        useRepo(Todo).save({
+          id: props.todoId,
+          user_id: e.target.value,
+        });
+      };
 
       return {
         users,
         todo,
+        update,
       };
-    },
-    methods: {
-      update(e) {
-        useRepo(Todo).save({
-          id: this.todoId,
-          user_id: e.target.value,
-        });
-      },
     },
   });
 </script>

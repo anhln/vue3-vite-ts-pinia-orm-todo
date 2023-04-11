@@ -3,7 +3,6 @@
 export default {
   users: [
     {
-      id: 1,
       name: "John Doe",
       todos: [
         {
@@ -17,7 +16,6 @@ export default {
       ],
     },
     {
-      id: 2,
       name: "Johnny Doe",
       todos: [
         {

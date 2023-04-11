@@ -10,9 +10,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, onMounted, ref } from "vue";
-  import { generateFakeData, Item } from "@/models/item";
-  import { useMainStore } from "@/store/index";
+  import { defineComponent } from "vue";
 
   import AppHeader from "@/components/AppHeader.vue";
   import AppDescription from "@/components/AppDescription.vue";
@@ -28,32 +26,7 @@
       TodosSection,
     },
     setup() {
-      const items = ref<Item[]>([]);
-
-      const mainStore = useMainStore();
-
-      onMounted(() => {
-        items.value = mainStore.items;
-      });
-
-      function createItem() {
-        mainStore.createNewItem(generateFakeData());
-      }
-
-      function deleteItem(id: string) {
-        mainStore.deleteItem(id);
-      }
-
-      function updateItem(id: string) {
-        mainStore.updateItem(id, generateFakeData());
-      }
-
-      return {
-        items,
-        createItem,
-        deleteItem,
-        updateItem,
-      };
+      return {};
     },
   });
 </script>
